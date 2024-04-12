@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:festival_app/utill.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
@@ -24,7 +25,7 @@ class _SaveImageState extends State<SaveImage> {
           ElevatedButton.icon(
             onPressed: () async {
               Directory add = await getApplicationDocumentsDirectory();
-              String myFilePath = "${add.path}/xyz.png";
+              String myFilePath = "${add.path}/harsh.png";
               print(myFilePath);
 
               File file = File(myFilePath);
@@ -33,6 +34,7 @@ class _SaveImageState extends State<SaveImage> {
                 print(file.path);
                 Share.shareXFiles(
                   [
+                    XFile(file.path),
                     XFile(file.path),
                   ],
                 );
@@ -44,14 +46,14 @@ class _SaveImageState extends State<SaveImage> {
           ElevatedButton.icon(
             onPressed: () async {
               Directory add = await getApplicationDocumentsDirectory();
-              String myFilePath = "${add.path}/xyz.png";
+              String myFilePath = "${add.path}/harsh.png";
               print(myFilePath);
 
               File file = File(myFilePath);
               if (savedImg != null) {
                 await file.writeAsBytes(savedImg!);
                 ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text("Successfully download...")));
+                    SnackBar(content: Text("Successfully download....")));
               }
             },
             icon: Icon(Icons.download),

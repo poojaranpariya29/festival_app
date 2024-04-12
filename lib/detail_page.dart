@@ -21,6 +21,7 @@ class _DetailPage extends State<DetailPage> {
   double sizevalue = 15;
   Alignment txtalign = Alignment.center;
   GlobalKey globalKey = GlobalKey();
+  double anglevalue = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -34,8 +35,7 @@ class _DetailPage extends State<DetailPage> {
         actions: [
           IconButton(
               onPressed: () async {
-                RenderRepaintBoundary rrb = GlobalKey()
-                    .currentContext
+                RenderRepaintBoundary rrb = globalKey.currentContext
                     ?.findRenderObject() as RenderRepaintBoundary;
                 var image = await rrb.toImage();
                 var pngImg =
@@ -44,9 +44,9 @@ class _DetailPage extends State<DetailPage> {
 
                 print("asUint8List $asUint8List");
                 savedImg = asUint8List;
-                Navigator.pushNamed(context, "save");
+                Navigator.pushNamed(context, "SaveImage");
               },
-              icon: Icon(Icons.save_alt_outlined)),
+              icon: Icon(Icons.camera_alt))
         ],
       ),
       body: Center(
@@ -86,16 +86,19 @@ class _DetailPage extends State<DetailPage> {
                       height: MediaQuery.of(context).size.height * 0.50,
                       width: double.infinity,
                       alignment: txtalign,
-                      child: Text(
-                        "${Global.g1.nametxt.text}",
-                        style: TextStyle(
-                          color: colorbg[colorfontindex],
-                          fontSize: sizevalue,
-                          fontFamily: fontsList[fontstyleindex],
-                          fontWeight:
-                              bold ? FontWeight.bold : FontWeight.normal,
-                          fontStyle:
-                              italic ? FontStyle.italic : FontStyle.normal,
+                      child: Transform.rotate(
+                        angle: anglevalue,
+                        child: Text(
+                          "${Global.g1.nametxt.text}",
+                          style: TextStyle(
+                            color: colorbg[colorfontindex],
+                            fontSize: sizevalue,
+                            fontFamily: fontsList[fontstyleindex],
+                            fontWeight:
+                                bold ? FontWeight.bold : FontWeight.normal,
+                            fontStyle:
+                                italic ? FontStyle.italic : FontStyle.normal,
+                          ),
                         ),
                       ),
                     ),
@@ -104,7 +107,7 @@ class _DetailPage extends State<DetailPage> {
               ),
               Container(
                 margin: EdgeInsets.all(10),
-                height: MediaQuery.of(context).size.height * 0.40,
+                height: MediaQuery.of(context).size.height * 0.45,
                 width: double.infinity,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
@@ -239,6 +242,26 @@ class _DetailPage extends State<DetailPage> {
                         IconButton(
                             onPressed: () {
                               setState(() {
+                                anglevalue++;
+                              });
+                            },
+                            icon: Icon(
+                              Icons.rotate_left,
+                              color: Colors.black,
+                            )),
+                        IconButton(
+                            onPressed: () {
+                              setState(() {
+                                anglevalue--;
+                              });
+                            },
+                            icon: Icon(
+                              Icons.rotate_right,
+                              color: Colors.black,
+                            )),
+                        IconButton(
+                            onPressed: () {
+                              setState(() {
                                 imgindex = 0;
                                 colorbgindex = 0;
                                 colorfontindex = 2;
@@ -248,6 +271,7 @@ class _DetailPage extends State<DetailPage> {
                                 italic = false;
                                 sizevalue = 15;
                                 txtalign = Alignment.center;
+                                anglevalue = 0;
                               });
                             },
                             icon: Icon(Icons.lock_reset_rounded)),
