@@ -1,4 +1,6 @@
+import 'package:festival_app/detail_page.dart';
 import 'package:festival_app/first_page.dart';
+import 'package:festival_app/save_file.dart';
 import 'package:festival_app/splash_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -22,6 +24,8 @@ class _MyappState extends State<Myapp> {
         routes: {
           "/": (context) => SplashScreen(),
           "home": (context) => Home_Screen(),
+          "detail": (context) => DetailPage(),
+          "save": (context) => SaveImage(),
         });
   }
 }

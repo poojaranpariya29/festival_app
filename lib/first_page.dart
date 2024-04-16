@@ -68,18 +68,18 @@ class _Home_ScreenState extends State<Home_Screen> {
                       l1.add(x);
                     }
                   }
-                  Navigator.pushNamed(context, 'design', arguments: l1);
+                  Navigator.pushNamed(context, 'detail', arguments: l1);
                 },
                 child: Container(
-                  height: MediaQuery.of(context).size.height * 0.16,
-                  width: MediaQuery.of(context).size.width * 0.40,
+                  height: 130,
+                  width: 130,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       color: Colors.amber.shade50),
                   child: Image.asset(
                     "${f1.image}",
-                    height: MediaQuery.of(context).size.height * 0.70,
-                    width: MediaQuery.of(context).size.width * 0.70,
+                    height: 200,
+                    width: 200,
                     fit: BoxFit.scaleDown,
                   ),
                 ),
