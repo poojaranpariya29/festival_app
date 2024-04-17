@@ -46,7 +46,7 @@ class _SaveImageState extends State<SaveImage> {
           ElevatedButton.icon(
             onPressed: () async {
               Directory add = await getApplicationDocumentsDirectory();
-              String myFilePath = "${add.path}/harsh.png";
+              String myFilePath = "${add.path}/xyz.png";
               print(myFilePath);
 
               File file = File(myFilePath);

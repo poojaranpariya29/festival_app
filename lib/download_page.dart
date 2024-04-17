@@ -18,7 +18,7 @@ class _DownloadState extends State<Download> {
     super.didChangeDependencies();
 
     getApplicationDocumentsDirectory().then((value) {
-      path = "${value.path}/harsh.png";
+      path = "${value.path}/xyz.png";
       setState(() {});
     });
   }
